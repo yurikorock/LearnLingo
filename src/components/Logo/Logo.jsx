@@ -5,14 +5,14 @@ export default function Logo() {
   return (
     <Link className={css.container} to="/">
       <div className={css.logo}>
-        <svg
+        <svg className={css.icon}
           width="28"
           height="28"
           viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_4_550)">
+          <g clipPath="url(#clip0_4_550)">
             <path
               d="M14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"
               fill="#FFDA44"
