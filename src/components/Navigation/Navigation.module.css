@@ -1,0 +1,18 @@
+.navigation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap:28px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #121417;
+
+}
+
+.link{
+border-bottom: none;
+}
+.isActive{
+    border-bottom: 2px solid #F4C550;
+}
