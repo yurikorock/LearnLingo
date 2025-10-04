@@ -6,15 +6,18 @@ gap: 24px;
 padding: 0px 64px;
 
 }
+/* LEFT BLOCK */
 .left_block{
 padding: 98px 108px 98px 64px ;
 background-color: #f8f8f8;;
 border-radius: 30px;
 
 box-sizing: border-box;
+
 width: 720px;
 height: 530px;
 }
+
 .title{
 font-weight: 500;
 font-size: 48px;
@@ -23,6 +26,7 @@ letter-spacing: -0.02em;
 color: #121417;
 margin-bottom: 32px;
 }
+
 .title span{
 display: inline-flex;
 align-items: center;
@@ -39,6 +43,7 @@ letter-spacing: -0.02em;
 
 background: #fbe9ba;
 }
+
 .text{
 font-weight: 400;
 font-size: 16px;
@@ -49,6 +54,8 @@ color: #121417;
 margin-bottom: 64px;
 max-width: 471px;
 }
+
+
 .typeBTN{
 display: flex;
 align-items: center;
@@ -67,15 +74,19 @@ color: #121417;
 background: #f4c550;
 transition: background-color 0.8s ease, box-shadow 0.8s ease; 
 }
+
 .typeBTN:hover,
 .typeBTN:focus{
 background:#fbe9ba;
 }
+
+
 .typeBTN:active{
 background: #f4c550;
 outline: 2px solid #F4C550;
 outline-offset: 2px;
 }
+
 .typeBTN span {
   display: inline-block;
   transition: transform 0.3s ease; /* плавність лише для тексту */
@@ -84,4 +95,25 @@ outline-offset: 2px;
 .typeBTN:hover span,
 .typeBTN:focus span {
   transform: scale(1.1); /* збільшуємо текст */
+}
+
+/* RIGHT BLOCK */
+.right_block{
+border-radius: 30px;
+width: 568px;
+height: 530px;
+
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+padding-top: 80px ;
+align-items: center;
+
+background: #fbe9ba;
+}
+.desktop{
+position: relative;
+top: -65px;
+flex-shrink: 0; /* не дає стискатись у контейнері right_block */
+
 }
