@@ -1,0 +1,40 @@
+.container {
+
+    width: 1312px;
+    height: 116px;
+    margin: 0 auto;
+    padding: 40px 122px;
+    border-radius: 30px;
+    border: 1.50px dashed #f4c550;
+    border-radius: 30px;
+    box-sizing: border-box;
+    margin-bottom: 32px;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+}
+.text_number{
+font-weight: 500;
+font-size: 28px;
+line-height: 1.14;
+letter-spacing: -0.02em;
+color: #121417;
+margin-right: 16px;
+}
+.text{
+font-weight: 400;
+font-size: 14px;
+line-height: 129%;
+letter-spacing: -0.02em;
+color: rgba(18, 20, 23, 0.7);
+max-width: 96px;
+}
