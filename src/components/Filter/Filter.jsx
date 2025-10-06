@@ -32,6 +32,8 @@ export default function Filter() {
                 Languages
               </label>
               <Select
+                unstyled //обнулили стилі
+                isSearchable={false} // вимикаємо інпут повністю
                 inputId={languagesFieldId}
                 name="languages"
                 options={options}
@@ -40,7 +42,7 @@ export default function Filter() {
                   setFieldValue("languages", selectedOption)
                 }
                 placeholder="Choose a language"
-                classNamePrefix="react-select"
+                classNamePrefix="custom-select"
               />
             </div>
 

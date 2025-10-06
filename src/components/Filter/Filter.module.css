@@ -1,41 +1,98 @@
-.filter_languages{
-display: flex;
-flex-direction: column;
+.filter_languages {
+    display: flex;
+    flex-direction: column;
+    max-width: 221px;
 }
-.label{
-font-weight: 500;
-font-size: 14px;
-line-height: 129%;
-color: #8a8a89;
-margin-bottom: 8px;
-}
-.select_control{
-appearance: none; /* стандарт */
-  -webkit-appearance: none; /* Safari */
-  -moz-appearance: none; /* Firefox */
 
-border-radius: 14px;
-padding: 14px 18px;
-max-width: 221px;
-height: 48px;
-background: #fff;
-border: none;
-cursor: pointer;
-box-shadow: none;
-
-font-weight: 500;
-font-size: 18px;
-line-height: 111%;
-color: #121417;
+.label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    color: #8a8a89;
+    margin-bottom: 8px;
 }
+
 .select_control:focus {
-  outline: none;
+    outline: none;
 }
+
 .option {
-  background: #af2020;
-  color: #121417;
+    background: #af2020;
+    color: #121417;
 }
+
 .option:checked {
-  background-color: #fbe9ba;
-  font-weight: 600;
+    background-color: #fbe9ba;
+    font-weight: 600;
 }
+
+:global(.custom-select__control) {
+    border-radius: 14px !important;
+    display: flex !important;
+    justify-content: center;
+
+    padding: 14px 13px 14px 18px !important;
+    max-width: 221px !important;
+    height: 48px !important;
+    background: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+
+
+}
+
+:global(.custom-select__value-container) {
+    display: inline-flex !important;
+    align-items: center !important;
+    max-width: 150px !important;
+    max-height: 20px !important;
+    padding: none !important;
+
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 1.11 !important;
+    color: #121417 !important;
+
+}
+
+:global(.custom-select__placeholder) {
+    margin: 0px 0px 0px 0px;
+    font-size: 14px;
+    color: #8a8a89;
+}
+
+:global(.custom-select__menu) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 4px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    width: 221px;
+    height: 160px;
+    background: #fff;
+
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 1.11 !important;
+    color: #121417 !important;
+}
+
+:global(.custom-select__menu-list) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+/* текст в випадаючому меню */
+:global(.custom-select__option) {
+  cursor: pointer;
+  color: rgba(18, 20, 23, 0.2);
+  transition: color 0.2s ease-in-out;
+}
+
+:global(.custom-select__option--is-focused) {
+  color:  #121417 !important;
+}
+
