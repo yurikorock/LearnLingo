@@ -21,7 +21,7 @@ export default function Hero() {
       <div className={css.right_block}>
         {/* треба змінити на спрайт!!!! */}
         {/* <svg width="339" height="339">
-          <use href="../../temp/avatar_girl.svg" />
+          <use href="./images/icons.svg#facebook" />
         </svg> */}
         <img src={girlAvatar} alt="Girl avatar" width="339" height="339" />
         <svg className={css.desktop}

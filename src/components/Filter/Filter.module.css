@@ -1,3 +1,8 @@
+.form{
+display: flex;
+flex-direction: row;
+gap: 20px;
+}
 .filter_languages {
     display: flex;
     flex-direction: column;
@@ -78,7 +83,7 @@
     line-height: 1.11 !important;
     color: #121417 !important;
 }
-
+/* список в випадаючому меню */
 :global(.custom-select__menu-list) {
     display: flex !important;
     flex-direction: column !important;
@@ -96,3 +101,22 @@
   color:  #121417 !important;
 }
 
+/* BUTTON */
+.btn {
+    margin-top: 26px;
+    height: 48px;
+  text-align: center;
+  padding: 12px 51px;
+  border: none;
+  border-radius: 12px;
+  background: #3470ff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1.25;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #0b44cd;
+}
