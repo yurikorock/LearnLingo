@@ -26,7 +26,7 @@ export default function Filter() {
     <div>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         {({ setFieldValue, values }) => (
-          <Form>
+          <Form className={css.form}>
             <div className={css.filter_languages}>
               <label htmlFor={languagesFieldId} className={css.label}>
                 Languages
@@ -46,7 +46,7 @@ export default function Filter() {
               />
             </div>
 
-            <button type="submit">Search</button>
+            <button type="submit" className={css.btn}>Search</button>
           </Form>
         )}
       </Formik>
