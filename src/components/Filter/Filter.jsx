@@ -8,27 +8,38 @@ export default function Filter() {
   const levelFieldId = useId();
 
   const options = {
-    languages:[{ value: "french", label: "French" },
-    { value: "english", label: "English" },
-    { value: "german", label: "German" },
-    { value: "ukrainian", label: "Ukrainian" },
-    { value: "polish", label: "Polish" },],
-    levels: [{ value: "beginner", label: "A1 Beginner" },
-    { value: "elementary", label: "A2 Elementary" },
-    { value: "intermediate", label: "B1 Intermediate" },
-    { value: "upper-Intermediate", label: "B2 Upper-Intermediate" },],
-    
+    languages: [
+      { value: "french", label: "French" },
+      { value: "english", label: "English" },
+      { value: "german", label: "German" },
+      { value: "ukrainian", label: "Ukrainian" },
+      { value: "polish", label: "Polish" },
+    ],
+    levels: [
+      { value: "beginner", label: "A1 Beginner" },
+      { value: "elementary", label: "A2 Elementary" },
+      { value: "intermediate", label: "B1 Intermediate" },
+      { value: "upper-Intermediate", label: "B2 Upper-Intermediate" },
+    ],
+    price: [
+      { value: 10, label: "10" },
+      { value: 20, label: "20" },
+      { value: 30, label: "30" },
+      { value: 40, label: "40" },
+    ],
   };
 
-  
   const initialValues = {
     languages: "",
     levels: "",
+    price: null,
   };
 
   const handleSubmit = (values, actions) => {
     console.log(values.languages.value);
     console.log(values.levels.value);
+    console.log(values.price.value);
+
     actions.resetForm();
   };
   return (
@@ -55,7 +66,7 @@ export default function Filter() {
               />
             </div>
 
-            <div className={css.filter_languages}>
+            <div className={css.filter_levels}>
               <label htmlFor={levelFieldId} className={css.label}>
                 Level of knowledge
               </label>
@@ -74,7 +85,28 @@ export default function Filter() {
               />
             </div>
 
-            <button type="submit" className={css.btn}>Search</button>
+            <div className={css.filter_price}>
+              <label htmlFor={levelFieldId} className={css.label}>
+                Price
+              </label>
+              <Select
+                unstyled //обнулили стилі
+                isSearchable={false} // вимикаємо інпут повністю
+                inputId={levelFieldId}
+                name="price"
+                options={options.price}
+                value={values.price}
+                onChange={(selectedOption) =>
+                  setFieldValue("price", selectedOption)
+                }
+                placeholder="Choose"
+                classNamePrefix="custom-select"
+              />
+            </div>
+
+            <button type="submit" className={css.btn}>
+              Search
+            </button>
           </Form>
         )}
       </Formik>
