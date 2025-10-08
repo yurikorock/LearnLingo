@@ -133,6 +133,7 @@
     font-weight: 700;
     font-size: 18px;
     transition: background-color 0.8s ease, color 0.8s ease;
+    cursor: pointer;
 
     
 }

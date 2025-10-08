@@ -6,7 +6,7 @@ export default function Logo() {
     <Link className={css.container} to="/">
       <div className={css.logo}>
         <svg className={css.icon} width="28" height="28">
-          <use href="../../../public/sprite/sprite.svg#icon-ukraine"></use>
+          <use href="/sprite/sprite.svg#icon-ukraine"></use>
         </svg>
         <p className={css.text}>LearnLingo</p>
       </div>
