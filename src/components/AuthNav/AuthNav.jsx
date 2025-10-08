@@ -11,7 +11,7 @@ export default function AuthNav() {
         }
       >
         <svg width="20" height="20">
-          <use href="../../../public/sprite/sprite.svg#icon-log-in"></use>
+          <use href="/sprite/sprite.svg#icon-log-in"></use>
         </svg>
         <p>Log in</p>
       </NavLink>
