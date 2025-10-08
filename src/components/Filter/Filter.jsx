@@ -6,6 +6,7 @@ import Select from "react-select";
 export default function Filter() {
   const languagesFieldId = useId();
   const levelFieldId = useId();
+  const priceFieldId = useId();
 
   const options = {
     languages: [
@@ -47,6 +48,7 @@ export default function Filter() {
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         {({ setFieldValue, values }) => (
           <Form className={css.form}>
+            {/* languages */}
             <div className={css.filter_languages}>
               <label htmlFor={languagesFieldId} className={css.label}>
                 Languages
@@ -65,7 +67,7 @@ export default function Filter() {
                 classNamePrefix="custom-select"
               />
             </div>
-
+            {/* levels */}
             <div className={css.filter_levels}>
               <label htmlFor={levelFieldId} className={css.label}>
                 Level of knowledge
@@ -84,15 +86,15 @@ export default function Filter() {
                 classNamePrefix="custom-select"
               />
             </div>
-
+            {/* price */}
             <div className={css.filter_price}>
-              <label htmlFor={levelFieldId} className={css.label}>
+              <label htmlFor={priceFieldId} className={css.label}>
                 Price
               </label>
               <Select
                 unstyled //обнулили стилі
                 isSearchable={false} // вимикаємо інпут повністю
-                inputId={levelFieldId}
+                inputId={priceFieldId}
                 name="price"
                 options={options.price}
                 value={values.price}
