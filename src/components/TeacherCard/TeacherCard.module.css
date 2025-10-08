@@ -1,0 +1,37 @@
+.container {
+    display: inline-flex;
+    width: 1184px;
+}
+
+.avatarWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    /* 96 + 8*2 (відступи) + 3*2 (бордери) */
+    height: 120px;
+    border: 3px solid #FBE9BA;
+    /* коло */
+    border-radius: 50%;
+    background-color: #fff;
+    /* білий фон між кільцем і аватаркою */
+    padding: 8px;
+    /* відстань від аватарки до кільця */
+}
+
+.avatar {
+    border-radius: 100px;
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+}
+
+.is_online {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 18px;
+    right: 18px;
+
+}
