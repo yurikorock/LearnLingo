@@ -33,30 +33,39 @@ export default function TeacherCard({ teacher }) {
       </section>
       <section className={css.profile_info}>
         <div className={css.teacher_info}>
-          <p className={css.languages}>Languages</p>
-          <h3 className={css.teacher_name}>{`${name} ${surname}`}</h3>
+          <div className={css.name_wrap}>
+            <p className={css.languages}>Languages</p>
+            <h3 className={css.teacher_name}>{`${name} ${surname}`}</h3>
+          </div>
+
           <ul className={css.rating}>
-            <li>
+            <li className={css.rating_item}>
               <svg className={css.icon_book} width="16" height="16">
                 <use href="/sprite/sprite.svg#icon-book-open"></use>
               </svg>
               <p>Lessons online</p>
             </li>
-            <li>
+            <li className={css.rating_item}>
               <p>{`Lessons done: ${lessons_done}`}</p>
             </li>
-            <li>
-              <svg className={css.icon} width="16" height="16">
+            <li className={css.rating_item}>
+              <svg className={css.icon_star} width="16" height="16">
                 <use href="/sprite/sprite.svg#icon-star"></use>
               </svg>
               <p>{`Rating: ${rating}`}</p>
             </li>
-            <li>
+            <li className={css.rating_item}>
               <p>
-                Price / 1 hour: <span>{rating}$</span>
+                Price / 1 hour: <span className={css.price}>{rating}$</span>
               </p>
             </li>
           </ul>
+
+          <button className={css.favorite_btn} type="button">
+            <svg className={css.heart} width="26" height="26">
+              <use href="/sprite/sprite.svg#icon-heart"></use>
+            </svg>
+          </button>
         </div>
       </section>
     </div>
