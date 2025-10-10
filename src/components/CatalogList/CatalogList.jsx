@@ -7,7 +7,7 @@ import TeacherCard from '../TeacherCard/TeacherCard.jsx'
 
 export default function CatalogList(){
     return (
-        <div>CatalogList
+        <div>
         {/* <Loader/> */}
         <ul className={css.list}>
             {teachers.map(teacher => (<TeacherCard key={teacher.id} teacher={teacher}/>))}

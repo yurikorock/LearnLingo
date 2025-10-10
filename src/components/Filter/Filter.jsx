@@ -44,7 +44,7 @@ export default function Filter() {
     actions.resetForm();
   };
   return (
-    <div>
+    <div className={css.container}>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         {({ setFieldValue, values }) => (
           <Form className={css.form}>
