@@ -42,8 +42,8 @@
 }
 
 .profile_info {
-    flex: 1;
     width: 100%;
+
 }
 
 .teacher_info {
@@ -52,6 +52,7 @@
     align-items: flex-start;
     width: 100%;
     flex: 1;
+    margin-bottom: 32px;
 
 }
 
@@ -101,15 +102,10 @@
     content: "";
     display: block;
     width: 2px;
-    /* товщина лінії */
     height: 16px;
-    /* висота лінії */
     background-color: #dadde1;
-    /* колір */
-   
     transform: translateX(-16px);
 }
-   
 
 .price {
     color: #38cd3e;
@@ -138,7 +134,63 @@
     stroke: black;
 
 }
-.heart:hover, .heart:hover{
+
+.heart:hover,
+.heart:hover {
     fill: #FFC531;
     stroke: #FFC531;
+}
+
+.teacher_descr {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #8a8a89;
+}
+.teacher_descr span{
+color: #121417;
+}
+.teacher_descr p:first-of-type span {
+  border-bottom: 1px solid #121417;
+}
+.link{
+cursor: pointer;
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+text-decoration: underline;
+text-decoration-skip-ink: none;
+color: #121417;
+ display: inline-block;
+margin-bottom: 32px;
+}
+
+.toggle_container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.toggle_btn {
+border: 1px solid rgba(18, 20, 23, 0.2);
+border-radius: 35px;
+padding: 8px 12px;
+background: white;
+cursor: pointer;
+transition: all 0.2s;
+
+font-weight: 500;
+font-size: 14px;
+line-height: 1.14;
+color: #121417;
+}
+
+.toggle_btn.active {
+  background: #f5a623;
+  color: #121417;
+  border-color: #f4c550;
 }

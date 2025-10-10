@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import css from "./TeacherCard.module.css";
 
 export default function TeacherCard({ teacher }) {
@@ -16,6 +18,9 @@ export default function TeacherCard({ teacher }) {
     conditions,
     experience,
   } = teacher;
+
+  const [selected, setSelected] = useState("A1 Beginner");
+  
 
   return (
     <div className={css.container}>
@@ -66,6 +71,30 @@ export default function TeacherCard({ teacher }) {
               <use href="/sprite/sprite.svg#icon-heart"></use>
             </svg>
           </button>
+        </div>
+        <div className={css.teacher_descr}>
+          <p>
+            Speaks: <span>{languages.join(", ")}</span>
+          </p>
+          <p>
+            Lesson Info: <span>{lesson_info}</span>
+          </p>
+          <p>
+            Conditions: <span>{conditions}</span>
+          </p>
+        </div>
+        <NavLink className={css.link}>Read more</NavLink>
+        <div className={css.toggle_container}>
+          {levels.map((level) => (
+            <button
+              key={level}
+              className={`${css.toggle_btn} ${selected === level ? css.active : ""}`}
+              onClick={() => setSelected(level)}
+            >
+              {level}
+              
+            </button>
+          ))}
         </div>
       </section>
     </div>
