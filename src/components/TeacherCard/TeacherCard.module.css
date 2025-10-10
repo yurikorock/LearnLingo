@@ -4,6 +4,8 @@
     width: 1184px;
     padding: 24px 24px;
     gap: 48px;
+    border-radius: 24px;
+    background: #fff;
 }
 
 .avatarWrap {
@@ -39,7 +41,104 @@
 
 }
 
+.profile_info {
+    flex: 1;
+    width: 100%;
+}
+
+.teacher_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    flex: 1;
+
+}
+
+.name_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.languages {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #8a8a89;
+}
+
+.teacher_name {
+
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    color: #121417;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    gap: 32px;
+}
+
+.rating_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #121417;
+}
+
+.rating_item:not(:first-child)::before {
+    content: "";
+    display: block;
+    width: 2px;
+    /* товщина лінії */
+    height: 16px;
+    /* висота лінії */
+    background-color: #dadde1;
+    /* колір */
+   
+    transform: translateX(-16px);
+}
+   
+
+.price {
+    color: #38cd3e;
+}
+
 .icon_book {
     fill: none;
     stroke: black;
+    margin-right: 8px;
+}
+
+.icon_star {
+    margin-right: 8px;
+}
+
+.favorite_btn {
+    all: unset;
+    margin-left: 64px;
+    cursor: pointer;
+}
+
+
+
+.heart {
+    fill: none;
+    stroke: black;
+
+}
+.heart:hover, .heart:hover{
+    fill: #FFC531;
+    stroke: #FFC531;
 }
