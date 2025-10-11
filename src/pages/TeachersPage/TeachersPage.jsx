@@ -1,13 +1,13 @@
-import CatalogList from "../../components/CatalogList/CatalogList.jsx"
-import Filter from "../../components/Filter/Filter.jsx"
-import css from  "./TeachersPage.module.css"
+import { Outlet } from "react-router-dom";
+import CatalogList from "../../components/CatalogList/CatalogList.jsx";
+import Filter from "../../components/Filter/Filter.jsx";
+import css from "./TeachersPage.module.css";
 
-export default function TeachersPage(){
-    return(
-        <div className={css.container}>
-        <Filter/>
-        <CatalogList/>
-
-        </div>
-    )
+export default function TeachersPage() {
+  return (
+    <div className={css.container}>
+      <Filter />
+      <CatalogList />
+    </div>
+  );
 }
