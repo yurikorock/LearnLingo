@@ -1,0 +1,41 @@
+.reviewer_block{
+display: flex;
+flex-direction: column;
+margin-bottom: 32px;
+
+}
+.reviewer_info{
+display: flex;
+flex-direction: row;
+gap: 12px;
+margin-bottom: 16px;
+}
+.reviewer_name{
+font-weight: 500;
+font-size: 16px;
+line-height: 1.5;
+color: #8a8a89;
+}
+.rating{
+    font-weight: 500;
+font-size: 14px;
+line-height: 1.29;
+color: #121417;
+
+}
+.reviewer_rating{
+display: flex;
+flex-direction: row;
+gap: 8px;
+align-items: center;
+}
+.icon_avatar {
+    fill: #fdf29b;
+    stroke: rgba(45, 3, 233, 0.466);
+    border-radius: 100px;
+    background-color: #f4c550;
+
+    width: 44px;
+    height: 44px;
+
+}
