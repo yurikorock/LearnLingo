@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import css from "./TeacherCard.module.css";
+import UserDetails from "../UserDetails/UserDetails.jsx";
 
 export default function TeacherCard({ teacher }) {
   const {
@@ -20,7 +21,7 @@ export default function TeacherCard({ teacher }) {
   } = teacher;
 
   const [selected, setSelected] = useState("A1 Beginner");
-  
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={css.container}>
@@ -61,7 +62,8 @@ export default function TeacherCard({ teacher }) {
             </li>
             <li className={css.rating_item}>
               <p>
-                Price / 1 hour: <span className={css.price}>{rating}$</span>
+                Price / 1 hour:{" "}
+                <span className={css.price}>{price_per_hour}$</span>
               </p>
             </li>
           </ul>
@@ -83,16 +85,30 @@ export default function TeacherCard({ teacher }) {
             Conditions: <span>{conditions}</span>
           </p>
         </div>
-        <NavLink className={css.link}>Read more</NavLink>
+        <button
+          type="button"
+          className={css.link}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          {isOpen ? "Hide details" : "Read more"}
+        </button>
+        {isOpen && (
+          <div>
+          <p>{experience}</p>
+            <UserDetails reviews={reviews} />
+          </div>
+        )}
+
         <div className={css.toggle_container}>
           {levels.map((level) => (
             <button
               key={level}
-              className={`${css.toggle_btn} ${selected === level ? css.active : ""}`}
+              className={`${css.toggle_btn} ${
+                selected === level ? css.active : ""
+              }`}
               onClick={() => setSelected(level)}
             >
               {level}
-              
             </button>
           ))}
         </div>
