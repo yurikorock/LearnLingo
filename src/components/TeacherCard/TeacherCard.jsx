@@ -94,7 +94,7 @@ export default function TeacherCard({ teacher }) {
         </button>
         {isOpen && (
           <div>
-          <p className={css.experience}>{experience}</p>
+            <p className={css.experience}>{experience}</p>
             <UserDetails reviews={reviews} />
           </div>
         )}
@@ -112,6 +112,7 @@ export default function TeacherCard({ teacher }) {
             </button>
           ))}
         </div>
+        {isOpen && (<button className={css.trialLessonBtn}>Book trial lesson</button>)}
       </section>
     </div>
   );
