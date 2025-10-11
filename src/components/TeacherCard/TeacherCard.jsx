@@ -94,7 +94,7 @@ export default function TeacherCard({ teacher }) {
         </button>
         {isOpen && (
           <div>
-          <p>{experience}</p>
+          <p className={css.experience}>{experience}</p>
             <UserDetails reviews={reviews} />
           </div>
         )}

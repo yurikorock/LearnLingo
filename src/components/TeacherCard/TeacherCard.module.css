@@ -169,6 +169,13 @@ color: #121417;
  display: inline-block;
 margin-bottom: 32px;
 }
+.experience{
+margin-bottom: 32px;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.5;
+color: #121417;
+}
 
 .toggle_container {
   display: flex;
