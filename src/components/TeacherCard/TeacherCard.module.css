@@ -233,3 +233,10 @@
 .trialLessonBtn:focus {
     background-color: #FBE9BA;
 }
+
+.trialLessonBtn:active
+{
+    background-color:  #f4c550;
+    outline: 2px solid  #f4c550;
+    outline-offset: 2px;
+}
