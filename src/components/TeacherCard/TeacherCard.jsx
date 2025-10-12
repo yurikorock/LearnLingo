@@ -2,8 +2,11 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import css from "./TeacherCard.module.css";
 import UserDetails from "../UserDetails/UserDetails.jsx";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../redux/modal/slice.js";
 
 export default function TeacherCard({ teacher }) {
+  const dispatch = useDispatch();
   const {
     id,
     name,
@@ -22,6 +25,11 @@ export default function TeacherCard({ teacher }) {
 
   const [selected, setSelected] = useState("A1 Beginner");
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleBookTrial = () => {
+    dispatch(openModal({ type: "bookTrial" }));
+   
+  };
 
   return (
     <div className={css.container}>
@@ -112,7 +120,11 @@ export default function TeacherCard({ teacher }) {
             </button>
           ))}
         </div>
-        {isOpen && (<button className={css.trialLessonBtn}>Book trial lesson</button>)}
+        {isOpen && (
+          <button className={css.trialLessonBtn} onClick={handleBookTrial}>
+            Book trial lesson
+          </button>
+        )}
       </section>
     </div>
   );
