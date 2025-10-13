@@ -64,7 +64,11 @@
     gap: 14px;
     margin-bottom: 40px;
 }
-
+.icon_avatar{
+border-radius: 100px;
+width: 44px;
+height: 44px;
+}
 .select_descr {
     font-weight: 500;
     font-size: 12px;

@@ -1,6 +1,6 @@
 import css from "./UserDetail.module.css";
 
-export default function UserDetails({ reviews }) {
+export default function UserDetails({ reviews, avatar_url, name, surname }) {
   return (
     <div>
       <ul className={css.container}>
