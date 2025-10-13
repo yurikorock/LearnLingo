@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./ModalBookTrial.module.css";
 import { closeModal } from "../../redux/modal/slice.js";
+import { selectModalData } from "../../redux/modal/selectors.js";
 import { useEffect } from "react";
 
 export default function ModalBookTrial() {
@@ -9,7 +10,9 @@ export default function ModalBookTrial() {
     dispatch(closeModal());
   };
 
-    // --- Закриття при кліку на backdrop ---
+  const teacher = useSelector(selectModalData);
+
+  // --- Закриття при кліку на backdrop ---
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose();
@@ -45,12 +48,21 @@ export default function ModalBookTrial() {
           </p>
         </div>
         <div className={css.select_teacher}>
-          <svg className={css.icon_avatar} width="44" height="44">
+          <img
+            className={css.icon_avatar}
+            src={teacher?.avatar_url}
+            alt={`${teacher?.name} ${teacher?.surname}`}
+            width="44"
+            height="44"
+          />
+          {/* <svg className={css.icon_avatar} width="44" height="44">
             <use href="/sprite/sprite.svg#icon-github"></use>
-          </svg>
+          </svg> */}
           <div className={css.select_data}>
             <p className={css.select_descr}>Your teacher</p>
-            <p className={css.select_name}>Jane Smith</p>
+            <p className={css.select_name}>
+              {teacher?.name} {teacher?.surname}
+            </p>
           </div>
         </div>
         <h3 className={css.title_quest}>

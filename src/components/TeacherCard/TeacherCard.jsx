@@ -27,8 +27,7 @@ export default function TeacherCard({ teacher }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleBookTrial = () => {
-    dispatch(openModal({ type: "bookTrial" }));
-   
+    dispatch(openModal({ type: "bookTrial", data: {avatar_url, name, surname}, }));
   };
 
   return (
@@ -103,7 +102,12 @@ export default function TeacherCard({ teacher }) {
         {isOpen && (
           <div>
             <p className={css.experience}>{experience}</p>
-            <UserDetails reviews={reviews} />
+            <UserDetails
+              reviews={reviews}
+              avatar_url={avatar_url}
+              name={name}
+              surname={surname}
+            />
           </div>
         )}
 
