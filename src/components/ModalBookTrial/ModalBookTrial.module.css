@@ -18,6 +18,24 @@
     background: #fff;
 }
 
+.closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+}
+
+.closeBtn_icon {
+    
+    fill: none;
+    width: 32px;
+    height: 32px;
+}
+
 .title_wrap {
     display: flex;
     flex-direction: column;
@@ -78,7 +96,7 @@
 
 
 .modal_btn {
-   
+
     border-radius: 12px;
     padding: 16px 215px;
     width: 100%;
@@ -105,9 +123,8 @@
     background-color: #FBE9BA;
 }
 
-.modal_btn:active
-{
-    background-color:  #f4c550;
-    outline: 2px solid  #f4c550;
+.modal_btn:active {
+    background-color: #f4c550;
+    outline: 2px solid #f4c550;
     outline-offset: 2px;
 }

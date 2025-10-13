@@ -9,7 +9,7 @@ export default function TeachersPage() {
     <div className={css.container}>
       <Filter />
       <CatalogList />
-      <ModalBookTrial/>
+      {/* <ModalBookTrial/> */}
     </div>
   );
 }
