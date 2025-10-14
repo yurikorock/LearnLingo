@@ -104,9 +104,7 @@ export default function TeacherCard({ teacher }) {
             <p className={css.experience}>{experience}</p>
             <UserDetails
               reviews={reviews}
-              avatar_url={avatar_url}
-              name={name}
-              surname={surname}
+             
             />
           </div>
         )}

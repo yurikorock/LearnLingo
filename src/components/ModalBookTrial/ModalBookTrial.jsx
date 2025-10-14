@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "./ModalBookTrial.module.css";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectModalData } from "../../redux/modal/selectors.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ModalBookTrial() {
   const dispatch = useDispatch();
+  const [mainReason, setMainReason] = useState("career"); // початковий вибір
   const handleClose = () => {
     dispatch(closeModal());
   };
@@ -65,9 +66,93 @@ export default function ModalBookTrial() {
             </p>
           </div>
         </div>
-        <h3 className={css.title_quest}>
-          What is your main reason for learning English?
-        </h3>
+        <form>
+          <h3 className={css.title_quest}>
+            What is your main reason for learning English?
+          </h3>
+          <div className={css.radioBlock}>
+            <label className={css.label_radio}>
+              <input
+                className={css.radioBtn}
+                type="radio"
+                name="mainreason"
+                value="career"
+                checked={mainReason === "career"}
+                onChange={(e) => setMainReason(e.target.value)}
+              />
+              <span >
+                <svg className={css.checkbox} width="20" height="20">
+                  <use href="/sprite/sprite.svg#icon-check-box"></use>
+                </svg>
+              </span>
+              Career and business
+            </label>
+            <label className={css.label_radio}>
+              <input
+                className={css.radioBtn}
+                type="radio"
+                name="mainreason"
+                value="lesson"
+                checked={mainReason === "lesson"}
+                onChange={(e) => setMainReason(e.target.value)}
+              />
+              <span >
+                <svg className={css.checkbox} width="20" height="20">
+                  <use href="/sprite/sprite.svg#icon-check-box"></use>
+                </svg>
+              </span>
+              Lesson for kids
+            </label>
+            <label className={css.label_radio}>
+              <input
+                className={css.radioBtn}
+                type="radio"
+                name="mainreason"
+                value="living"
+                checked={mainReason === "living"}
+                onChange={(e) => setMainReason(e.target.value)}
+              />
+              <span >
+                <svg className={css.checkbox} width="20" height="20">
+                  <use href="/sprite/sprite.svg#icon-check-box"></use>
+                </svg>
+              </span>
+              Living abroad
+            </label>
+            <label className={css.label_radio}>
+              <input
+                className={css.radioBtn}
+                type="radio"
+                name="mainreason"
+                value="exams"
+                checked={mainReason === "exams"}
+                onChange={(e) => setMainReason(e.target.value)}
+              />
+              <span >
+                <svg className={css.checkbox} width="20" height="20">
+                  <use href="/sprite/sprite.svg#icon-check-box"></use>
+                </svg>
+              </span>
+              Exams and coursework
+            </label>
+            <label className={css.label_radio}>
+              <input
+                className={css.radioBtn}
+                type="radio"
+                name="mainreason"
+                value="culture"
+                checked={mainReason === "culture"}
+                onChange={(e) => setMainReason(e.target.value)}
+              />
+              <span >
+                <svg className={css.checkbox} width="20" height="20">
+                  <use href="/sprite/sprite.svg#icon-check-box"></use>
+                </svg>
+              </span>
+              Culture, travel or hobby
+            </label>
+          </div>
+        </form>
         <button className={css.modal_btn}>Book</button>
       </div>
     </div>

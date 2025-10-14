@@ -91,12 +91,58 @@ height: 44px;
     color: #121417;
     margin-bottom: 20px;
 }
+.radioBlock{
+display: flex;
+flex-direction: column;
+gap: 16px;
+margin-bottom: 40px;
+}
 
+.label_radio{
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 8px;
+cursor: pointer;
+}
+.radioBtn{
+position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+/* Стилі кастомного кружечка */
+.label_radio span {
+   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc; /* неактивна рамка */
+  border-radius: 50%;
+  transition: border-color 0.2s ease;
+}
+/* Усередині кружечка маленьке коло, яке з'являється при checked */
+.label_radio span::after {
+  content: "";
+   position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #f4c550; /* жовтий колір */
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
 
+/* Активна кнопка — жовте кільце + коло */
+.radioBtn:checked + span {
+  border-color: #f4c550;
+}
 
-
-
-
+.radioBtn:checked + span::after {
+  transform: scale(1);
+}
 
 
 .modal_btn {
