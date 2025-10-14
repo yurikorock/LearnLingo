@@ -29,7 +29,13 @@ export default function ModalBookTrial() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    // коли модалка відкрита — блокуємо скрол
+    document.body.classList.add("modal-open");
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      // коли закривається — повертаємо
+     document.body.classList.add("modal-open");
+    };
   }, []);
 
   return (
@@ -80,7 +86,7 @@ export default function ModalBookTrial() {
                 checked={mainReason === "career"}
                 onChange={(e) => setMainReason(e.target.value)}
               />
-              <span >
+              <span>
                 <svg className={css.checkbox} width="20" height="20">
                   <use href="/sprite/sprite.svg#icon-check-box"></use>
                 </svg>
@@ -96,7 +102,7 @@ export default function ModalBookTrial() {
                 checked={mainReason === "lesson"}
                 onChange={(e) => setMainReason(e.target.value)}
               />
-              <span >
+              <span>
                 <svg className={css.checkbox} width="20" height="20">
                   <use href="/sprite/sprite.svg#icon-check-box"></use>
                 </svg>
@@ -112,7 +118,7 @@ export default function ModalBookTrial() {
                 checked={mainReason === "living"}
                 onChange={(e) => setMainReason(e.target.value)}
               />
-              <span >
+              <span>
                 <svg className={css.checkbox} width="20" height="20">
                   <use href="/sprite/sprite.svg#icon-check-box"></use>
                 </svg>
@@ -128,7 +134,7 @@ export default function ModalBookTrial() {
                 checked={mainReason === "exams"}
                 onChange={(e) => setMainReason(e.target.value)}
               />
-              <span >
+              <span>
                 <svg className={css.checkbox} width="20" height="20">
                   <use href="/sprite/sprite.svg#icon-check-box"></use>
                 </svg>
@@ -144,7 +150,7 @@ export default function ModalBookTrial() {
                 checked={mainReason === "culture"}
                 onChange={(e) => setMainReason(e.target.value)}
               />
-              <span >
+              <span>
                 <svg className={css.checkbox} width="20" height="20">
                   <use href="/sprite/sprite.svg#icon-check-box"></use>
                 </svg>
@@ -152,8 +158,15 @@ export default function ModalBookTrial() {
               Culture, travel or hobby
             </label>
           </div>
+          <div className={css.input_block}>
+            <input className={css.input} placeholder="Full Name" />
+            <input className={css.input} placeholder="Email" />
+            <input className={css.input} placeholder="Phone number" />
+          </div>
         </form>
-        <button className={css.modal_btn}>Book</button>
+        <button className={css.modal_btn} type="submit">
+          Book
+        </button>
       </div>
     </div>
   );

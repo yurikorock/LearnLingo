@@ -1,3 +1,10 @@
+html.modal-open,
+#root.modal-open {
+  overflow: hidden;
+}
+
+
+
 .backdrop {
     position: fixed;
     inset: 0;
@@ -143,7 +150,26 @@ position: absolute;
 .radioBtn:checked + span::after {
   transform: scale(1);
 }
+.input_block{
+display: flex;
+flex-direction: column;
+gap:18px;
+margin-bottom: 40px;
+}
+.input{
+    border: 1px solid rgba(18, 20, 23, 0.1);
+border-radius: 12px;
+padding: 16px 16px 16px 18px;
+width: 472px;
+height: 54px;
 
+font-weight: 400;
+font-size: 16px;
+line-height: 137%;
+color: #121417;
+
+outline: transparent;
+}
 
 .modal_btn {
 
@@ -178,3 +204,4 @@ position: absolute;
     outline: 2px solid #f4c550;
     outline-offset: 2px;
 }
+
