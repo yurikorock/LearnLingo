@@ -27,14 +27,26 @@ export default function ModalBookTrial() {
         handleClose();
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
+
+    // ---- Заблокувати скрол ----
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    // додаємо padding-right, щоб сторінка не "стрибає"
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollBarWidth}px`;
+
     // коли модалка відкрита — блокуємо скрол
+    document.documentElement.classList.add("modal-open");
     document.body.classList.add("modal-open");
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "";
       // коли закривається — повертаємо
-     document.body.classList.add("modal-open");
+      document.documentElement.classList.remove("modal-open");
+      document.body.classList.remove("modal-open");
     };
   }, []);
 

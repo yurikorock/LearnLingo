@@ -1,8 +1,11 @@
-html.modal-open,
-#root.modal-open {
-  overflow: hidden;
+:global(html.modal-open),
+:global(body.modal-open) {
+  overflow: hidden !important;
 }
 
+body {
+  transition: padding-right 0.2s ease;
+}
 
 
 .backdrop {
