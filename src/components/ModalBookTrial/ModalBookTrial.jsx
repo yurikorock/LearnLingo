@@ -3,10 +3,13 @@ import css from "./ModalBookTrial.module.css";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectModalData } from "../../redux/modal/selectors.js";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function ModalBookTrial() {
   const dispatch = useDispatch();
   const [mainReason, setMainReason] = useState("career"); // початковий вибір
+  const { register, handleSubmit,reset } = useForm();
+
   const handleClose = () => {
     dispatch(closeModal());
   };
@@ -50,6 +53,12 @@ export default function ModalBookTrial() {
     };
   }, []);
 
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+    setMainReason("career");
+  }
+
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
@@ -84,7 +93,9 @@ export default function ModalBookTrial() {
             </p>
           </div>
         </div>
-        <form>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <h3 className={css.title_quest}>
             What is your main reason for learning English?
           </h3>
@@ -93,7 +104,8 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                name="mainreason"
+                 {...register("mainreason")}
+               
                 value="career"
                 checked={mainReason === "career"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -109,7 +121,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                name="mainreason"
+                   {...register("mainreason")}
                 value="lesson"
                 checked={mainReason === "lesson"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -125,7 +137,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                name="mainreason"
+                 {...register("mainreason")}
                 value="living"
                 checked={mainReason === "living"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -141,7 +153,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                name="mainreason"
+                 {...register("mainreason")}
                 value="exams"
                 checked={mainReason === "exams"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -157,7 +169,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                name="mainreason"
+                 {...register("mainreason")}
                 value="culture"
                 checked={mainReason === "culture"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -171,14 +183,26 @@ export default function ModalBookTrial() {
             </label>
           </div>
           <div className={css.input_block}>
-            <input className={css.input} placeholder="Full Name" />
-            <input className={css.input} placeholder="Email" />
-            <input className={css.input} placeholder="Phone number" />
+            <input
+              className={css.input}
+              {...register("fullname")}
+              placeholder="Full Name"
+            />
+            <input
+              className={css.input}
+              {...register("email")}
+              placeholder="Email"
+            />
+            <input
+              className={css.input}
+              {...register("phonenumber")}
+              placeholder="Phone number"
+            />
           </div>
+          <button className={css.modal_btn} type="submit">
+            Book
+          </button>
         </form>
-        <button className={css.modal_btn} type="submit">
-          Book
-        </button>
       </div>
     </div>
   );
