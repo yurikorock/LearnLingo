@@ -101,6 +101,8 @@ height: 44px;
     color: #121417;
     margin-bottom: 20px;
 }
+
+/* === RADIO BUTTONS === */
 .radioBlock{
 display: flex;
 flex-direction: column;
@@ -115,28 +117,31 @@ align-items: center;
 gap: 8px;
 cursor: pointer;
 }
+
 .radioBtn{
 position: absolute;
   opacity: 0;
   pointer-events: none;
 }
+
 /* Стилі кастомного кружечка */
 .label_radio span {
-   position: relative;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 20px;
   height: 20px;
   box-sizing: border-box;
-  border: 2px solid #ccc; /* неактивна рамка */
+  border: 2px solid  #8a8a89;/* неактивна рамка */
   border-radius: 50%;
   transition: border-color 0.2s ease;
+  box-sizing: border-box;
 }
 /* Усередині кружечка маленьке коло, яке з'являється при checked */
 .label_radio span::after {
   content: "";
-   position: absolute;
+  position: absolute;
   width: 10px;
   height: 10px;
   background-color: #f4c550; /* жовтий колір */
@@ -152,6 +157,10 @@ position: absolute;
 
 .radioBtn:checked + span::after {
   transform: scale(1);
+}
+
+.checkbox{
+display: none;
 }
 .input_block{
 display: flex;

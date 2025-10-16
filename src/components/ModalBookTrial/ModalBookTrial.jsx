@@ -4,11 +4,21 @@ import { closeModal } from "../../redux/modal/slice.js";
 import { selectModalData } from "../../redux/modal/selectors.js";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  fullName: yup.string().required(),
+  email: yup.string().email().required(),
+  phoneNumber: yup.number().required().positive(),
+});
 
 export default function ModalBookTrial() {
   const dispatch = useDispatch();
   const [mainReason, setMainReason] = useState("career"); // початковий вибір
-  const { register, handleSubmit,reset } = useForm();
+  const { register, handleSubmit, reset, formState: {errors} } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleClose = () => {
     dispatch(closeModal());
@@ -57,7 +67,7 @@ export default function ModalBookTrial() {
     console.log(data);
     reset();
     setMainReason("career");
-  }
+  };
 
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
@@ -93,9 +103,7 @@ export default function ModalBookTrial() {
             </p>
           </div>
         </div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h3 className={css.title_quest}>
             What is your main reason for learning English?
           </h3>
@@ -104,8 +112,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                 {...register("mainreason")}
-               
+                {...register("mainreason")}
                 value="career"
                 checked={mainReason === "career"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -121,7 +128,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                   {...register("mainreason")}
+                {...register("mainreason")}
                 value="lesson"
                 checked={mainReason === "lesson"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -137,7 +144,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                 {...register("mainreason")}
+                {...register("mainreason")}
                 value="living"
                 checked={mainReason === "living"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -153,7 +160,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                 {...register("mainreason")}
+                {...register("mainreason")}
                 value="exams"
                 checked={mainReason === "exams"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -169,7 +176,7 @@ export default function ModalBookTrial() {
               <input
                 className={css.radioBtn}
                 type="radio"
-                 {...register("mainreason")}
+                {...register("mainreason")}
                 value="culture"
                 checked={mainReason === "culture"}
                 onChange={(e) => setMainReason(e.target.value)}
@@ -185,19 +192,22 @@ export default function ModalBookTrial() {
           <div className={css.input_block}>
             <input
               className={css.input}
-              {...register("fullname")}
+              {...register("fullName")}
               placeholder="Full Name"
             />
+            {errors.fullName && <p>{errors.fullName?.message}</p>}
             <input
               className={css.input}
               {...register("email")}
               placeholder="Email"
             />
+            {errors.email && <p>{errors.email?.message}</p>}
             <input
               className={css.input}
-              {...register("phonenumber")}
+              {...register("phoneNumber")}
               placeholder="Phone number"
             />
+            {errors.phoneNumber && <p>{errors.phoneNumber?.message}</p>}
           </div>
           <button className={css.modal_btn} type="submit">
             Book
