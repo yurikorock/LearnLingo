@@ -1,10 +1,10 @@
 :global(html.modal-open),
 :global(body.modal-open) {
-  overflow: hidden !important;
+    overflow: hidden !important;
 }
 
 body {
-  transition: padding-right 0.2s ease;
+    transition: padding-right 0.2s ease;
 }
 
 
@@ -40,7 +40,7 @@ body {
 }
 
 .closeBtn_icon {
-    
+
     fill: none;
     width: 32px;
     height: 32px;
@@ -74,11 +74,13 @@ body {
     gap: 14px;
     margin-bottom: 40px;
 }
-.icon_avatar{
-border-radius: 100px;
-width: 44px;
-height: 44px;
+
+.icon_avatar {
+    border-radius: 100px;
+    width: 44px;
+    height: 44px;
 }
+
 .select_descr {
     font-weight: 500;
     font-size: 12px;
@@ -103,84 +105,109 @@ height: 44px;
 }
 
 /* === RADIO BUTTONS === */
-.radioBlock{
-display: flex;
-flex-direction: column;
-gap: 16px;
-margin-bottom: 40px;
+.radioBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
 }
 
-.label_radio{
-display: flex;
-flex-direction: row;
-align-items: center;
-gap: 8px;
-cursor: pointer;
+.label_radio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
 }
 
-.radioBtn{
-position: absolute;
-  opacity: 0;
-  pointer-events: none;
+.radioBtn {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Стилі кастомного кружечка */
 .label_radio span {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  box-sizing: border-box;
-  border: 2px solid  #8a8a89;/* неактивна рамка */
-  border-radius: 50%;
-  transition: border-color 0.2s ease;
-  box-sizing: border-box;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 2px solid #8a8a89;
+    /* неактивна рамка */
+    border-radius: 50%;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
 }
+
 /* Усередині кружечка маленьке коло, яке з'являється при checked */
 .label_radio span::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #f4c550; /* жовтий колір */
-  border-radius: 50%;
-  transform: scale(0);
-  transition: transform 0.2s ease;
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f4c550;
+    /* жовтий колір */
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.2s ease;
 }
 
 /* Активна кнопка — жовте кільце + коло */
-.radioBtn:checked + span {
-  border-color: #f4c550;
+.radioBtn:checked+span {
+    border-color: #f4c550;
 }
 
-.radioBtn:checked + span::after {
-  transform: scale(1);
+.radioBtn:checked+span::after {
+    transform: scale(1);
 }
 
-.checkbox{
-display: none;
+.checkbox {
+    display: none;
 }
-.input_block{
-display: flex;
-flex-direction: column;
-gap:18px;
-margin-bottom: 40px;
+
+.input_block {
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 40px;
 }
-.input{
+.input_wrap {
+  position: relative;
+  width: 100%;
+}
+.input {
+    position: relative;
+    display: flex;
     border: 1px solid rgba(18, 20, 23, 0.1);
-border-radius: 12px;
-padding: 16px 16px 16px 18px;
-width: 472px;
-height: 54px;
+    border-radius: 12px;
+    padding: 16px 16px 16px 18px;
+    width: 472px;
+    height: 54px;
 
-font-weight: 400;
-font-size: 16px;
-line-height: 137%;
-color: #121417;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 137%;
+    color: #121417;
 
-outline: transparent;
+    outline: transparent;
+}
+.input.errors {
+  border-color: #ff4d4d;
+}
+.error {
+    position: absolute;
+    
+    gap: 20px;
+    min-width: 240px;
+    top: 15px;
+    left: 250px;
+    color: #ff4d4d;
+    font-size: 14px;
+    z-index: 100;
 }
 
 .modal_btn {
@@ -216,4 +243,3 @@ outline: transparent;
     outline: 2px solid #f4c550;
     outline-offset: 2px;
 }
-

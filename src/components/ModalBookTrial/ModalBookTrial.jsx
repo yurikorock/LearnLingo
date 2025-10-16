@@ -10,13 +10,21 @@ import * as yup from "yup";
 const schema = yup.object().shape({
   fullName: yup.string().required(),
   email: yup.string().email().required(),
-  phoneNumber: yup.number().required().positive(),
+  phoneNumber: yup
+    .string()
+    .required()
+    .matches(/^[0-9+\-\s()]*$/, "Invalid phone number"),
 });
 
 export default function ModalBookTrial() {
   const dispatch = useDispatch();
   const [mainReason, setMainReason] = useState("career"); // початковий вибір
-  const { register, handleSubmit, reset, formState: {errors} } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -86,16 +94,9 @@ export default function ModalBookTrial() {
           </p>
         </div>
         <div className={css.select_teacher}>
-          <img
-            className={css.icon_avatar}
-            src={teacher?.avatar_url}
-            alt={`${teacher?.name} ${teacher?.surname}`}
-            width="44"
-            height="44"
-          />
-          {/* <svg className={css.icon_avatar} width="44" height="44">
+          <svg className={css.icon_avatar} width="44" height="44">
             <use href="/sprite/sprite.svg#icon-github"></use>
-          </svg> */}
+          </svg>
           <div className={css.select_data}>
             <p className={css.select_descr}>Your teacher</p>
             <p className={css.select_name}>
@@ -103,6 +104,7 @@ export default function ModalBookTrial() {
             </p>
           </div>
         </div>
+        {/* ** FORM ** */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <h3 className={css.title_quest}>
             What is your main reason for learning English?
@@ -189,25 +191,39 @@ export default function ModalBookTrial() {
               Culture, travel or hobby
             </label>
           </div>
+
+          {/* *** BLOCK INPUT *** */}
           <div className={css.input_block}>
-            <input
-              className={css.input}
-              {...register("fullName")}
-              placeholder="Full Name"
-            />
-            {errors.fullName && <p>{errors.fullName?.message}</p>}
-            <input
-              className={css.input}
-              {...register("email")}
-              placeholder="Email"
-            />
-            {errors.email && <p>{errors.email?.message}</p>}
-            <input
-              className={css.input}
-              {...register("phoneNumber")}
-              placeholder="Phone number"
-            />
-            {errors.phoneNumber && <p>{errors.phoneNumber?.message}</p>}
+            <div className={css.input_wrap}>
+              <input
+                className={`${css.input} ${errors.fullName ? css.errors : ""}`}
+                {...register("fullName")}
+                placeholder="Full Name"
+              />
+              {errors.fullName && (
+                <p className={css.error}>{errors.fullName?.message}</p>
+              )}
+            </div>
+            <div className={css.input_wrap}>
+              <input
+                className={`${css.input} ${errors.email ? css.errors : ""}`}
+                {...register("email")}
+                placeholder="Email"
+              />
+              {errors.email && (
+                <p className={css.error}>{errors.email?.message}</p>
+              )}
+            </div>
+            <div className={css.input_wrap}>
+              <input
+                className={`${css.input} ${errors.phoneNumber? css.errors : ""}`}
+                {...register("phoneNumber")}
+                placeholder="Phone number"
+              />
+              {errors.phoneNumber && (
+                <p className={css.error}>{errors.phoneNumber?.message}</p>
+              )}
+            </div>
           </div>
           <button className={css.modal_btn} type="submit">
             Book
