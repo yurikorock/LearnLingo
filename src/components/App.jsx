@@ -5,6 +5,7 @@ import Layout from "./Layout/Layout.jsx";
 import MainPage from "../pages/MainPage/MainPage.jsx";
 import TeachersPage from "../pages/TeachersPage/TeachersPage.jsx";
 import UserDetailsPage from "./UserDetails/UserDetails.jsx";
+import AuthPage from "../pages/AuthPage.jsx/AuthPage.jsx";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/teachers" element={<TeachersPage />} />
+          <Route path="auth/:type" element={<AuthPage/>}/>
         </Route>
       </Routes>
     </>
