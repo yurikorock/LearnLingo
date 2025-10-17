@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <>
       <Header />
-      <ModalContainer/>
+      <ModalContainer />
       <main className={css.main}>
         <Outlet />
       </main>
