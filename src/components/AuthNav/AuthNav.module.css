@@ -1,54 +1,75 @@
 .container {
-    display: flex;
-    gap: 16px;
-    align-items: center;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .link {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    border-bottom: none;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.25;
-    color: #121417;
+  all: unset;
+  /* повне скидання більшості стилів */
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-bottom: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
+  cursor: pointer;
+
+  transition: border-color 0.8s ease;
 }
+.link p {
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.link:hover p,
+.link:focus p {
+  border-bottom: 2px solid #F4C550;
+  
+}
+
 
 .isActive p {
-    border-bottom: 2px solid #F4C550;
+  border-bottom: 2px solid #F4C550;
 }
-.typeBTN{
-display: flex;
-align-items: center;
-justify-content: center;
 
-border-radius: 12px;
-padding: 14px 39px;
-background: #121417;
+.typeBTN {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-font-weight: 700;
-font-size: 16px;
-line-height: 1.25;
-color: #fff;
+  border-radius: 12px;
+  padding: 14px 39px;
+  background: #121417;
 
-transition: background-color 0.8s ease, box-shadow 0.8s ease; 
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fff;
+
+  transition: background-color 0.8s ease, box-shadow 0.8s ease;
 }
+
 .typeBTN:hover,
-.typeBTN:focus{
-background:#8a8a89;
+.typeBTN:focus {
+  background: #8a8a89;
 }
-.typeBTN:active{
-background: #121417;
-outline: 2px solid #F4C550;
-outline-offset: 2px;
+
+.typeBTN:active {
+  background: #121417;
+  outline: 2px solid #F4C550;
+  outline-offset: 2px;
 }
+
 .typeBTN span {
   display: inline-block;
-  transition: transform 0.3s ease; /* плавність лише для тексту */
+  transition: transform 0.3s ease;
+  /* плавність лише для тексту */
 }
 
 .typeBTN:hover span,
 .typeBTN:focus span {
-  transform: scale(1.1); /* збільшуємо текст */
+  transform: scale(1.1);
+  /* збільшуємо текст */
 }

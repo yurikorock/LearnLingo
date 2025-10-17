@@ -1,23 +1,30 @@
+//AuthNav.jsx
 import { NavLink } from "react-router-dom";
 import css from "./AuthNav.module.css";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../redux/modal/slice.js";
 
 export default function AuthNav() {
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    dispatch(openModal({ type: "login" }));
+  };
+  const handleRegistration = () => {
+    dispatch(openModal({ type: "registration" }));
+  };
+
   return (
     <div className={css.container}>
-      <NavLink
-        to="/auth/login"
-        className={({ isActive }) =>
-          isActive ? `${css.link} ${css.isActive}` : css.link
-        }
-      >
+      <button onClick={handleLogin} className={css.link}>
         <svg width="20" height="20">
           <use href="/sprite/sprite.svg#icon-log-in"></use>
         </svg>
         <p>Log in</p>
-      </NavLink>
-      <NavLink to="/auth/register" className={css.typeBTN}>
+      </button>
+      <button onClick={handleRegistration} className={css.typeBTN}>
         <span>Registration</span>
-      </NavLink>
+      </button>
     </div>
   );
 }

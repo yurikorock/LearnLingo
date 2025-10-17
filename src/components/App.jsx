@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="auth/:type" element={<AuthPage/>}/>
+         
         </Route>
       </Routes>
     </>

@@ -1,3 +1,4 @@
+//AuthPage.jsx
 import { useLocation } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm.jsx";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm.jsx";
