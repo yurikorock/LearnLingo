@@ -101,7 +101,7 @@ export default function RegistrationForm() {
               <input
                 className={`${css.input} ${errors.fullName ? css.errors : ""}`}
                 {...register("fullName")}
-                placeholder="Full Name"
+                placeholder="Name"
               />
               {errors.fullName && (
                 <p className={css.error}>{errors.fullName?.message}</p>
