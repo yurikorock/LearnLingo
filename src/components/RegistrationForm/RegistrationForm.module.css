@@ -111,11 +111,21 @@ body {
 
     gap: 20px;
     min-width: 240px;
-    top: 15px;
-    left: 200px;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 16px;
     color: #ff4d4d;
     font-size: 14px;
     z-index: 100;
+}
+
+.toggleBtn {
+    all: unset;
+    position: absolute;
+    left: 400px;
+    top: 16px;
+    cursor: pointer;
+
 }
 
 .modal_btn {
