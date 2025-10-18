@@ -1,4 +1,5 @@
 import css from "./RegistrationForm.module.css";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectModalData } from "../../redux/modal/selectors.js";
@@ -12,14 +13,15 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup
     .string()
-    .min(8, 'must be at least 8 characters')
-    .max(50, 'must be at most 50 characters')
-    .required()
-    
+    .min(8, "must be at least 8 characters")
+    .max(50, "must be at most 50 characters")
+    .required(),
 });
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -30,7 +32,6 @@ export default function RegistrationForm() {
   });
 
   const handleClose = () => {
-   
     dispatch(closeModal());
   };
 
@@ -91,10 +92,9 @@ export default function RegistrationForm() {
             information
           </p>
         </div>
-        
+
         {/* ** FORM ** */}
         <form onSubmit={handleSubmit(onSubmit)}>
-          
           {/* *** BLOCK INPUT *** */}
           <div className={css.input_block}>
             <div className={css.input_wrap}>
@@ -119,15 +119,22 @@ export default function RegistrationForm() {
             </div>
             <div className={css.input_wrap}>
               <input
-                className={`${css.input} ${
-                  errors.password ? css.errors : ""
-                }`}
+                className={`${css.input} ${errors.password ? css.errors : ""}`}
                 {...register("password")}
                 placeholder="Password"
+                type={showPassword ? "text" : "password"}
               />
               {errors.password && (
                 <p className={css.error}>{errors.password?.message}</p>
               )}
+              <button
+                type="button"
+                className={css.toggleBtn}
+                onClick={() => setShowPassword((e)=> !e)}
+              >
+              {showPassword ? (<FiEye size={20} />) : (<FiEyeOff size={20} />)}
+                
+              </button>
             </div>
           </div>
           <button className={css.modal_btn} type="submit">
