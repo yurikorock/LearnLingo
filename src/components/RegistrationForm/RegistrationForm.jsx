@@ -10,10 +10,12 @@ import * as yup from "yup";
 const schema = yup.object().shape({
   fullName: yup.string().required(),
   email: yup.string().email().required(),
-  phoneNumber: yup
+  password: yup
     .string()
+    .min(8, 'must be at least 8 characters')
+    .max(50, 'must be at most 50 characters')
     .required()
-    .matches(/^[0-9+\-\s()]*$/, "Invalid phone number"),
+    
 });
 
 export default function RegistrationForm() {
@@ -28,7 +30,7 @@ export default function RegistrationForm() {
   });
 
   const handleClose = () => {
-    console.log("Close clicked");
+   
     dispatch(closeModal());
   };
 
@@ -118,13 +120,13 @@ export default function RegistrationForm() {
             <div className={css.input_wrap}>
               <input
                 className={`${css.input} ${
-                  errors.phoneNumber ? css.errors : ""
+                  errors.password ? css.errors : ""
                 }`}
-                {...register("phoneNumber")}
-                placeholder="Phone number"
+                {...register("password")}
+                placeholder="Password"
               />
-              {errors.phoneNumber && (
-                <p className={css.error}>{errors.phoneNumber?.message}</p>
+              {errors.password && (
+                <p className={css.error}>{errors.password?.message}</p>
               )}
             </div>
           </div>
