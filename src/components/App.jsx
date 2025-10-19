@@ -7,6 +7,7 @@ import TeachersPage from "../pages/TeachersPage/TeachersPage.jsx";
 import UserDetailsPage from "./UserDetails/UserDetails.jsx";
 import AuthPage from "../pages/AuthPage.jsx/AuthPage.jsx";
 import { Toaster } from "react-hot-toast";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.jsx";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route index element={<MainPage />} />
           <Route path="/teachers" element={<TeachersPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
         <Toaster position="top-center" reverseOrder={false} />
     </>
