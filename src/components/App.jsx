@@ -6,6 +6,7 @@ import MainPage from "../pages/MainPage/MainPage.jsx";
 import TeachersPage from "../pages/TeachersPage/TeachersPage.jsx";
 import UserDetailsPage from "./UserDetails/UserDetails.jsx";
 import AuthPage from "../pages/AuthPage.jsx/AuthPage.jsx";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   return (
@@ -14,9 +15,9 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/teachers" element={<TeachersPage />} />
-         
         </Route>
       </Routes>
+        <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }
