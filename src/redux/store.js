@@ -24,7 +24,7 @@ const persistedUserReducer = persistReducer(persistConfig, userReducer);
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
-    user: persistedUserReducer,
+    auth: persistedUserReducer,
     // bookTrial: bookTrialReducer,
   },
   middleware: (getDefaultMiddleware) =>
