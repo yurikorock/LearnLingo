@@ -8,6 +8,8 @@ import UserDetailsPage from "./UserDetails/UserDetails.jsx";
 import AuthPage from "../pages/AuthPage.jsx/AuthPage.jsx";
 import { Toaster } from "react-hot-toast";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.jsx";
+import FavoritesPage from "../pages/FavoritesPage/FavoritesPage.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 export default function App() {
   return (
@@ -17,9 +19,15 @@ export default function App() {
           <Route index element={<MainPage />} />
           <Route path="/teachers" element={<TeachersPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage/>}/>
+        <Route
+          path="/favorites"
+          element={
+            <PrivateRoute component={FavoritesPage} redirectTo="/" />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
-        <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 }
