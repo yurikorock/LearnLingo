@@ -1,5 +1,3 @@
-import css from "./LoginForm.module.css";
-
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/modal/slice.js";
@@ -7,7 +5,12 @@ import { selectModalData } from "../../redux/modal/selectors.js";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import * as yup from "yup";
+import { setUser } from "../../redux/auth/userSlice.js";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import css from "./LoginForm.module.css";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -21,6 +24,7 @@ const schema = yup.object().shape({
 export default function LoginForm() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -73,7 +77,27 @@ export default function LoginForm() {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
+    const { email, password } = data;
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        // console.log(user);
+        dispatch(
+          setUser({
+            email: user.email,
+            token: user.accessToken,
+            id: user.uid,
+          })
+        );
+        toast.success("You are enter successful! 🎉");
+
+        handleClose();
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something went wrong. Please try again.");
+      });
     reset();
   };
   return (
@@ -96,7 +120,6 @@ export default function LoginForm() {
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* *** BLOCK INPUT *** */}
           <div className={css.input_block}>
-            
             <div className={css.input_wrap}>
               <input
                 className={`${css.input} ${errors.email ? css.errors : ""}`}
@@ -127,7 +150,7 @@ export default function LoginForm() {
             </div>
           </div>
           <button className={css.modal_btn} type="submit">
-            Book
+            Log In
           </button>
         </form>
       </div>
