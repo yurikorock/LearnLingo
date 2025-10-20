@@ -1,9 +1,13 @@
-import css from "./FavoritesPage.module.css"
+import Header from "../../components/Header/Header.jsx";
+import css from "./FavoritesPage.module.css";
 
 export default function FavoritesPage() {
   return (
     <>
-      <h2>FavoritesPage</h2>
+      <Header />
+      <div className={css.container}>
+        <h3>Favorites</h3>
+      </div>
     </>
   );
 }

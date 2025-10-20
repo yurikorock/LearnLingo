@@ -92,7 +92,7 @@ export default function LoginForm() {
         toast.success("You are enter successful! 🎉");
 
         handleClose();
-        navigate("/");
+        navigate("/favorites");
       })
       .catch((error) => {
         console.log(error);
