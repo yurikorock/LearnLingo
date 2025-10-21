@@ -125,8 +125,18 @@
     all: unset;
     margin-left: 64px;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    fill: none;
+    stroke: black;
 }
 
+
+
+.favorite_btn.active svg {
+    fill: #FFC531;
+    stroke: #FFC531;
+}
 
 
 .heart {
@@ -234,9 +244,8 @@
     background-color: #FBE9BA;
 }
 
-.trialLessonBtn:active
-{
-    background-color:  #f4c550;
-    outline: 2px solid  #f4c550;
+.trialLessonBtn:active {
+    background-color: #f4c550;
+    outline: 2px solid #f4c550;
     outline-offset: 2px;
 }

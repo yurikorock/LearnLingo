@@ -11,7 +11,7 @@ export const getTeachersList = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const dbRef = ref(db);
-      const snapshot = await get(child(dbRef, "/"));
+      const snapshot = await get(child(dbRef, "/teachers"));
       if (snapshot.exists()) {
         const teachersArray = Object.values(snapshot.val());
         return teachersArray;

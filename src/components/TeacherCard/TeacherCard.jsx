@@ -1,9 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./TeacherCard.module.css";
 import UserDetails from "../UserDetails/UserDetails.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../redux/modal/slice.js";
+import { selectUserId } from "../../redux/auth/selectors.js";
+import { ref, set, remove, get } from "firebase/database";
+import { db } from "../../firebase.js";
+import toast from "react-hot-toast";
 
 export default function TeacherCard({ teacher }) {
   const dispatch = useDispatch();
@@ -25,9 +29,40 @@ export default function TeacherCard({ teacher }) {
 
   const [selected, setSelected] = useState("A1 Beginner");
   const [isOpen, setIsOpen] = useState(false);
+  const userId = useSelector(selectUserId);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // перевірка чи є вчитель обраним
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    const favRef = ref(db, `users/${userId}/favorites/${id}`);
+    get(favRef).then((snapshot) => {
+      if (snapshot.exists()) setIsFavorite(true);
+    });
+  }, [userId, id]);
+
+  //додавання видалення з обраного
+  const handleToggleFavorite = async () => {
+    if (!userId) {
+      toast.error("Please log in to add favorites!");
+      return;
+    }
+    const favRef = ref(db, `users/${userId}/favorites/${id}`);
+    if (isFavorite) {
+      await remove(favRef);
+      setIsFavorite(false);
+    } else {
+      await set(favRef, teacher);
+      setIsFavorite(true);
+    }
+  };
 
   const handleBookTrial = () => {
-    dispatch(openModal({ type: "bookTrial", data: {avatar_url, name, surname}, }));
+    dispatch(
+      openModal({ type: "bookTrial", data: { avatar_url, name, surname } })
+    );
   };
 
   return (
@@ -69,14 +104,18 @@ export default function TeacherCard({ teacher }) {
             </li>
             <li className={css.rating_item}>
               <p>
-                Price / 1 hour:{" "}
-                <span className={css.price}>{price_per_hour}$</span>
+                Price / 1 hour: 
+                <span className={css.price}>{` ${price_per_hour}$`}</span>
               </p>
             </li>
           </ul>
 
-          <button className={css.favorite_btn} type="button">
-            <svg className={css.heart} width="26" height="26">
+          <button
+            onClick={handleToggleFavorite}
+            className={`${css.favorite_btn} ${isFavorite ? css.active : ""} `}
+            type="button"
+          >
+            <svg className={css.hear} width="26" height="26">
               <use href="/sprite/sprite.svg#icon-heart"></use>
             </svg>
           </button>
@@ -102,10 +141,7 @@ export default function TeacherCard({ teacher }) {
         {isOpen && (
           <div>
             <p className={css.experience}>{experience}</p>
-            <UserDetails
-              reviews={reviews}
-             
-            />
+            <UserDetails reviews={reviews} />
           </div>
         )}
 

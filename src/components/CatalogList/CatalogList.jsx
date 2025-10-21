@@ -28,6 +28,7 @@ export default function CatalogList() {
 
       <ul className={css.list}>
         {teachers.map((teacher) => (
+        
           <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
       </ul>
