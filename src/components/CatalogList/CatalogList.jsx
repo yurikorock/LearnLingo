@@ -8,15 +8,29 @@ import {
   selectTeacherList,
 } from "../../redux/teachers/selectors.js";
 import { getTeachersList } from "../../redux/teachers/operations.js";
+import {
+  selectLanguage,
+  selectLevel,
+  selectPrice,
+} from "../../redux/filters/selectors.js";
 
 export default function CatalogList() {
   const dispatch = useDispatch();
   const teachers = useSelector(selectTeacherList);
   const isLoading = useSelector(selectIsLoading);
+  const language = useSelector(selectLanguage);
+  const level = useSelector(selectLevel);
+  const price = useSelector(selectPrice);
 
   useEffect(() => {
-    dispatch(getTeachersList());
-  }, []); // отримати дані вчителів, записати в стан
+    dispatch(
+      getTeachersList({
+        language,
+        level,
+        price,
+      })
+    );
+  }, [language, level, price, dispatch]); // отримати дані вчителів, записати в стан
 
   return (
     <div>
@@ -28,7 +42,6 @@ export default function CatalogList() {
 
       <ul className={css.list}>
         {teachers.map((teacher) => (
-        
           <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
       </ul>

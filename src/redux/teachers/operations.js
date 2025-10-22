@@ -1,23 +1,30 @@
 //operations
 
-
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { get, ref, child } from "firebase/database";
-import {db} from "../../firebase.js"
+import { db } from "../../firebase.js";
 
 export const getTeachersList = createAsyncThunk(
   "teachers/getTeachersList",
-  async (_, thunkAPI) => {
+  async ({ language, level, price }, thunkAPI) => {
     try {
       const dbRef = ref(db);
       const snapshot = await get(child(dbRef, "/teachers"));
-      if (snapshot.exists()) {
-        const teachersArray = Object.values(snapshot.val());
-        return teachersArray;
-      } else {
+      if (!snapshot.exists()) {
         return [];
       }
+      const teachersArray = Object.values(snapshot.val());
+      const filtered = teachersArray.filter((teacher) => {
+        const matchLanguage =
+          !language ||
+          teacher.languages === language ||
+          teacher.languages?.includes(language);
+        const matchLevel =
+          !level || teacher.levels === level || teacher.levels?.includes(level);
+        const matchPrice = !price || teacher.price_per_hour <= Number(price);
+        return matchLanguage && matchLevel && matchPrice;
+      });
+      return filtered;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

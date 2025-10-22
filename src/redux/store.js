@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from "./modal/slice.js";
 import userReducer from "./auth/userSlice.js";
-import teacherReducer from "./teachers/teachersSlice.js"
+import teacherReducer from "./teachers/teachersSlice.js";
+import filtersReducer from "./filters/filtersSlice.js";
 // import bookTrialReducer from "./modal/bookTrialSlice.js"
 import {
   persistStore,
@@ -27,6 +28,7 @@ export const store = configureStore({
     modal: modalReducer,
     auth: persistedUserReducer,
     teachers: teacherReducer,
+    filters: filtersReducer,
     // bookTrial: bookTrialReducer,
   },
   middleware: (getDefaultMiddleware) =>

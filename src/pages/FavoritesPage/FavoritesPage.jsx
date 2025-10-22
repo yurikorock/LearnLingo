@@ -14,14 +14,18 @@ export default function FavoritesPage() {
   useEffect(() => {
     if (!userId) return;
     const favRef = ref(db, `users/${userId}/favorites`);
-    get(favRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        const data = Object.values(snapshot.val());
-        setFavorites(data);
-      } else {
-        setFavorites([]);
-      }
-    });
+    get(favRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = Object.values(snapshot.val());
+          setFavorites(data);
+        } else {
+          setFavorites([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching favorites:", error);
+      });
   }, [userId]);
 
   return (

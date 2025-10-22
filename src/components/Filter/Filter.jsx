@@ -2,8 +2,25 @@ import { Field, Form, Formik } from "formik";
 import css from "./Filter.module.css";
 import { useId } from "react";
 import Select from "react-select";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  resetFilters,
+  setLanguage,
+  setPrice,
+  setLevel,
+} from "../../redux/filters/filtersSlice.js";
+import {
+  selectLanguage,
+  selectLevel,
+  selectPrice,
+} from "../../redux/filters/selectors.js";
 
 export default function Filter() {
+  const dispatch = useDispatch();
+  const language = useSelector(selectLanguage);
+  const level = useSelector(selectLevel);
+  const price = useSelector(selectPrice);
+
   const languagesFieldId = useId();
   const levelFieldId = useId();
   const priceFieldId = useId();
@@ -15,6 +32,11 @@ export default function Filter() {
       { value: "german", label: "German" },
       { value: "ukrainian", label: "Ukrainian" },
       { value: "polish", label: "Polish" },
+      { value: "spanish", label: "Spanish" },
+      { value: "italian", label: "Italian" },
+      { value: "korean", label: "Korean" },
+      { value: "mandarin_chinese", label: "Mandarin Chinese" },
+      { value: "vietnamese", label: "Vietnamese" },
     ],
     levels: [
       { value: "beginner", label: "A1 Beginner" },
@@ -36,12 +58,8 @@ export default function Filter() {
     price: null,
   };
 
-  const handleSubmit = (values, actions) => {
-    console.log(values.languages.value);
-    console.log(values.levels.value);
-    console.log(values.price.value);
-
-    actions.resetForm();
+  const handleSubmit = (actions) => {
+    dispatch(resetFilters());
   };
   return (
     <div className={css.container}>
@@ -60,9 +78,10 @@ export default function Filter() {
                 name="languages"
                 options={options.languages}
                 value={values.languages}
-                onChange={(selectedOption) =>
-                  setFieldValue("languages", selectedOption)
-                }
+                onChange={(selectedOption) => {
+                  setFieldValue("languages", selectedOption);
+                  dispatch(setLanguage(selectedOption?.value || ""));
+                }}
                 placeholder="Choose a language"
                 classNamePrefix="custom-select"
               />
@@ -79,9 +98,10 @@ export default function Filter() {
                 name="levels"
                 options={options.levels}
                 value={values.levels}
-                onChange={(selectedOption) =>
-                  setFieldValue("levels", selectedOption)
-                }
+                onChange={(selectedOption) => {
+                  setFieldValue("levels", selectedOption);
+                  dispatch(setLevel(selectedOption?.value || ""));
+                }}
                 placeholder="Choose a level"
                 classNamePrefix="custom-select"
               />
@@ -98,16 +118,17 @@ export default function Filter() {
                 name="price"
                 options={options.price}
                 value={values.price}
-                onChange={(selectedOption) =>
-                  setFieldValue("price", selectedOption)
-                }
+                onChange={(selectedOption) => {
+                  setFieldValue("price", selectedOption);
+                  dispatch(setPrice(selectedOption?.value || ""));
+                }}
                 placeholder="Choose"
                 classNamePrefix="custom-select"
               />
             </div>
 
             <button type="submit" className={css.btn}>
-              Search
+              Reset
             </button>
           </Form>
         )}
