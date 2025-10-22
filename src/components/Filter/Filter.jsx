@@ -35,7 +35,7 @@ export default function Filter() {
       { value: "spanish", label: "Spanish" },
       { value: "italian", label: "Italian" },
       { value: "korean", label: "Korean" },
-      { value: "mandarin_chinese", label: "Mandarin Chinese" },
+      { value: "mandarin chinese", label: "Mandarin Chinese" },
       { value: "vietnamese", label: "Vietnamese" },
     ],
     levels: [
@@ -63,76 +63,71 @@ export default function Filter() {
   };
   return (
     <div className={css.container}>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
-        {({ setFieldValue, values }) => (
-          <Form className={css.form}>
-            {/* languages */}
-            <div className={css.filter_languages}>
-              <label htmlFor={languagesFieldId} className={css.label}>
-                Languages
-              </label>
-              <Select
-                unstyled //обнулили стилі
-                isSearchable={false} // вимикаємо інпут повністю
-                inputId={languagesFieldId}
-                name="languages"
-                options={options.languages}
-                value={values.languages}
-                onChange={(selectedOption) => {
-                  setFieldValue("languages", selectedOption);
-                  dispatch(setLanguage(selectedOption?.value || ""));
-                }}
-                placeholder="Choose a language"
-                classNamePrefix="custom-select"
-              />
-            </div>
-            {/* levels */}
-            <div className={css.filter_levels}>
-              <label htmlFor={levelFieldId} className={css.label}>
-                Level of knowledge
-              </label>
-              <Select
-                unstyled //обнулили стилі
-                isSearchable={false} // вимикаємо інпут повністю
-                inputId={levelFieldId}
-                name="levels"
-                options={options.levels}
-                value={values.levels}
-                onChange={(selectedOption) => {
-                  setFieldValue("levels", selectedOption);
-                  dispatch(setLevel(selectedOption?.value || ""));
-                }}
-                placeholder="Choose a level"
-                classNamePrefix="custom-select"
-              />
-            </div>
-            {/* price */}
-            <div className={css.filter_price}>
-              <label htmlFor={priceFieldId} className={css.label}>
-                Price
-              </label>
-              <Select
-                unstyled //обнулили стилі
-                isSearchable={false} // вимикаємо інпут повністю
-                inputId={priceFieldId}
-                name="price"
-                options={options.price}
-                value={values.price}
-                onChange={(selectedOption) => {
-                  setFieldValue("price", selectedOption);
-                  dispatch(setPrice(selectedOption?.value || ""));
-                }}
-                placeholder="Choose"
-                classNamePrefix="custom-select"
-              />
-            </div>
+      <div className={css.form}>
+        {/* languages */}
+        <div className={css.filter_languages}>
+          <label htmlFor={languagesFieldId} className={css.label}>
+            Languages
+          </label>
+          <Select
+            unstyled //обнулили стилі
+            isSearchable={false} // вимикаємо інпут повністю
+            options={options.languages}
+            value={
+              options.languages.find((opt) => opt.value === language) || null
+            }
+            name="languages"
+            onChange={(opt) => dispatch(setLanguage(opt?.value || ""))}
+            placeholder="Choose a language"
+            classNamePrefix="custom-select"
+            isClearable
+          />
+        </div>
+        {/* levels */}
+        <div className={css.filter_levels}>
+          <label htmlFor={levelFieldId} className={css.label}>
+            Level of knowledge
+          </label>
+          <Select
+            unstyled //обнулили стилі
+            isSearchable={false} // вимикаємо інпут повністю
+            inputId={levelFieldId}
+            name="levels"
+            options={options.levels}
+            value={options.levels.find((opt) => opt.value === level) || null}
+            onChange={(opt) => dispatch(setLevel(opt?.value || ""))}
+            placeholder="Choose a level"
+            classNamePrefix="custom-select"
+            isClearable
+          />
+        </div>
+        {/* price */}
+        <div className={css.filter_price}>
+          <label htmlFor={priceFieldId} className={css.label}>
+            Price
+          </label>
+          <Select
+            unstyled //обнулили стилі
+            isSearchable={false} // вимикаємо інпут повністю
+            inputId={priceFieldId}
+            name="price"
+            options={options.price}
+            value={options.price.find((opt) => opt.value === price) || null}
+            onChange={(opt) => dispatch(setPrice(opt?.value || ""))}
+            placeholder="Choose"
+            classNamePrefix="custom-select"
+            isClearable
+          />
+        </div>
 
-            <button type="submit" className={css.btn}>
-              Reset
-            </button>
-          </Form>
-        )}
-      </Formik>
+        <button
+          type="submit"
+          className={css.btn}
+          onClick={() => dispatch(resetFilters())}
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
