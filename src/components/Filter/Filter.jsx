@@ -52,15 +52,6 @@ export default function Filter() {
     ],
   };
 
-  const initialValues = {
-    languages: "",
-    levels: "",
-    price: null,
-  };
-
-  const handleSubmit = (actions) => {
-    dispatch(resetFilters());
-  };
   return (
     <div className={css.container}>
       <div className={css.form}>
@@ -130,19 +121,4 @@ export default function Filter() {
       </div>
     </div>
   );
-}
-
-{
-  /* <Field
-              as="select"
-              name="languages"
-              id={languagesFieldId}
-              className={css.select_control}
-            >
-              <option value="french" className={css.option}>French</option>
-              <option value="english" className={css.option}>English</option>
-              <option value="german" className={css.option}>German</option>
-              <option value="ukrainian" className={css.option}>Ukrainian</option>
-              <option value="polish" className={css.option}>Polish</option>
-            </Field> */
 }

@@ -15,9 +15,8 @@ export const getTeachersList = createAsyncThunk(
       }
       const teachersArray = Object.values(snapshot.val());
 
-      // console.log("Teachers from DB:", teachersArray);
-      console.log("Filters:", { language, level, price });
-      console.log("Teachers array:", teachersArray);
+      // console.log("Filters:", { language, level, price });
+      // console.log("Teachers array:", teachersArray);
 
       const filtered = teachersArray.filter((teacher) => {
         const matchLanguage =
@@ -33,7 +32,7 @@ export const getTeachersList = createAsyncThunk(
         const matchPrice = !price || teacher.price_per_hour <= Number(price);
         return matchLanguage && matchLevel && matchPrice;
       });
-      console.log("Filtered teachers:", filtered);
+      // console.log("Filtered teachers:", filtered);
       return filtered;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

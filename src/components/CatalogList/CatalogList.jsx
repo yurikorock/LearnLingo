@@ -49,19 +49,3 @@ export default function CatalogList() {
   );
 }
 
-// export default function CatalogList() {
-
-//   useEffect(() => {}, []);// отримати дані вчителів, записати в стан
-
-//   return (
-//     <div>
-//       {/* <Loader/> */}
-//       <ul className={css.list}>
-//         {teachers.map((teacher) => (
-//           <TeacherCard key={teacher.id} teacher={teacher} />
-//         ))}
-//       </ul>
-
-//     </div>
-//   );
-// }
