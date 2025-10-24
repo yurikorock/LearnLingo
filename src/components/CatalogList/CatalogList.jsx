@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsLoading,
   selectTeacherList,
+  selectPage,
+  selectTotal,
 } from "../../redux/teachers/selectors.js";
 import { getTeachersList } from "../../redux/teachers/operations.js";
 import {
@@ -13,6 +15,7 @@ import {
   selectLevel,
   selectPrice,
 } from "../../redux/filters/selectors.js";
+import { nextPage, resetTeachers } from "../../redux/teachers/teachersSlice.js";
 
 export default function CatalogList() {
   const dispatch = useDispatch();
@@ -21,16 +24,27 @@ export default function CatalogList() {
   const language = useSelector(selectLanguage);
   const level = useSelector(selectLevel);
   const price = useSelector(selectPrice);
+  const page = useSelector(selectPage);
+  const total = useSelector(selectTotal);
 
   useEffect(() => {
+    dispatch(resetTeachers());
     dispatch(
       getTeachersList({
         language,
         level,
         price,
+        page:1,
       })
     );
-  }, [language, level, price, dispatch]); // отримати дані вчителів, записати в стан
+  }, [language, level, price, dispatch]); 
+
+  const handleLoadMore = () => {
+    dispatch(nextPage());
+    dispatch(getTeachersList({ page: page + 1 }));
+  };
+
+  const canLoadMore = teachers.length < total;
 
   return (
     <div>
@@ -45,6 +59,11 @@ export default function CatalogList() {
           <TeacherCard key={teacher.id} teacher={teacher} />
         ))}
       </ul>
+      {canLoadMore && !isLoading && (
+        <button className={css.loadMoreBtn} onClick={handleLoadMore}>
+          Load more
+        </button>
+      )}
     </div>
   );
 }

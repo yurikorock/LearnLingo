@@ -6,14 +6,17 @@ import { db } from "../../firebase.js";
 
 export const getTeachersList = createAsyncThunk(
   "teachers/getTeachersList",
-  async ({ language, level, price }, thunkAPI) => {
+  async ({ language, level, price, page = 1, limit = 4 }, thunkAPI) => {
     try {
       const dbRef = ref(db);
       const snapshot = await get(child(dbRef, "/teachers"));
       if (!snapshot.exists()) {
-        return [];
+        return { teachers: [], total: 0, page };
       }
-      const teachersArray = Object.values(snapshot.val());
+      const teachersData = snapshot.val();
+      const teachersArray = teachersData.teachersList
+        ? teachersData.teachersList
+        : Object.values(teachersData);
 
       // console.log("Filters:", { language, level, price });
       // console.log("Teachers array:", teachersArray);
@@ -33,7 +36,15 @@ export const getTeachersList = createAsyncThunk(
         return matchLanguage && matchLevel && matchPrice;
       });
       // console.log("Filtered teachers:", filtered);
-      return filtered;
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginated = filtered.slice(startIndex, endIndex);
+
+      return {
+        teachers: paginated,
+        total: filtered.length,
+        page,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
