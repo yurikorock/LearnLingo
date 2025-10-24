@@ -60,9 +60,12 @@ export default function CatalogList() {
         ))}
       </ul>
       {canLoadMore && !isLoading && (
-        <button className={css.loadMoreBtn} onClick={handleLoadMore}>
+      <div className={css.loadMoreWrapper}>
+ <button className={css.loadMoreBtn} onClick={handleLoadMore}>
           Load more
         </button>
+      </div>
+       
       )}
     </div>
   );
