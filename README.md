@@ -1,33 +1,39 @@
 LEARN LINGO is a modern web application for finding language tutors online.
 You can filter tutors by language, student level, and lesson price, as well as save your favorite tutors for quick access.
+
 Built with React, Firebase, and Redux Toolkit, with full authentication support.
 
 🚀 Features
 🏠 Home — a landing page with service information.
 👩‍🏫 Teachers — a catalog of available tutors with descriptions and ratings.
 🎯 Advanced Filtering — filter tutors by:
-Teaching language
-Student level
-Price per hour
+    Teaching language
+    Student level
+    Price per hour
 ⭐ Favorites — log in and save your favorite tutors.
 ⚡ Performance — optimized with lazy loading and memoization.
 💾 Persistent State — favorites are stored in localStorage.
 🧠 Tech Stack
+
 ⚙️ Core
 React 19.0.0 — UI library
 React Router DOM 7.9.3 — routing
 Redux Toolkit 2.9.0 — state management
 Redux Persist 6.0.0 — persistent state
+
 📝 Form Management
 Formik 2.4.6 — form handling
 React Hook Form + Yup — form validation
+
 🎨 UI Components
 React Select 5.10.2 — custom dropdowns
 React Hot Toast 2.6.0 — notifications
 React Spinners 0.17.0 — loading indicators
+
 🔗 Backend & API
 Firebase Realtime Database — tutor data storage
 Firebase Authentication — registration, login, logout, current user management
+
 🧰 Firebase Implementation
 Feature	Description
 🔐 Auth	Register, login, get current user
@@ -35,6 +41,7 @@ Feature	Description
 🎯 Filtering	Filter by language, level, price
 ❤️ Favorites	Save favorite tutors per user
 💡 Highlights
+
 Modular code structure: components, redux, pages, firebase
 Each component has its own module.css file
 Pagination with Load more button for loading additional tutors
