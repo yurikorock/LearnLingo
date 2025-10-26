@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import toast from "react-hot-toast";
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -72,9 +73,11 @@ export default function ModalBookTrial() {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     reset();
     setMainReason("career");
+    handleClose();
+    toast.success("Your trial lesson has been booked 🎉");
   };
 
   return (

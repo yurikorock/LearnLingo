@@ -6,13 +6,19 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebase.js";
 import { ref, get } from "firebase/database";
 import TeacherCard from "../../components/TeacherCard/TeacherCard.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
 
 export default function FavoritesPage() {
   const userId = useSelector(selectUserId);
   const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userId) {
+      setIsLoading(false);
+      return;
+    }
+
     const favRef = ref(db, `users/${userId}/favorites`);
     get(favRef)
       .then((snapshot) => {
@@ -25,15 +31,22 @@ export default function FavoritesPage() {
       })
       .catch((error) => {
         console.error("Error fetching favorites:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [userId]);
 
   return (
     <>
-      <Header />
+    
       <div className={css.container}>
-        {favorites.length === 0 ? (
-          <p>You don`t add any favorites teacher !</p>
+        {isLoading ? (
+          <div className={css.loaderWrapper}>
+            <Loader />
+          </div>
+        ) : favorites.length === 0 ? (
+          <p>You don`t have any favorite teachers yet!</p>
         ) : (
           favorites.map((teacher) => (
             <TeacherCard key={teacher.id} teacher={teacher} />

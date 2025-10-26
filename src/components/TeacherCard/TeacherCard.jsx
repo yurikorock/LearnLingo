@@ -60,6 +60,7 @@ export default function TeacherCard({ teacher }) {
   };
 
   const handleBookTrial = () => {
+    
     dispatch(
       openModal({ type: "bookTrial", data: { avatar_url, name, surname } })
     );
