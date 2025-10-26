@@ -4,7 +4,7 @@ import css from "./FavoritesPage.module.css";
 import { selectUserId } from "../../redux/auth/selectors.js";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase.js";
-import { ref, get } from "firebase/database";
+import { ref, get, onValue, off } from "firebase/database";
 import TeacherCard from "../../components/TeacherCard/TeacherCard.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 
@@ -19,27 +19,34 @@ export default function FavoritesPage() {
       return;
     }
 
-    const favRef = ref(db, `users/${userId}/favorites`);
-    get(favRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          const data = Object.values(snapshot.val());
-          setFavorites(data);
-        } else {
-          setFavorites([]);
+    try {
+      const favRef = ref(db, `users/${userId}/favorites`);
+      const unsubscribe = onValue(
+        favRef,
+        (snapshot) => {
+          if (snapshot.exists()) {
+            const data = Object.values(snapshot.val());
+            setFavorites(data);
+          } else {
+            setFavorites([]);
+          }
+          setIsLoading(false);
+        },
+        (error) => {
+          console.error("Error fetching favorites:", error);
+          setIsLoading(false);
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching favorites:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      );
+
+      return () => off(favRef);
+    } catch (error) {
+      console.error("Error initializing listener:", error);
+      setIsLoading(false);
+    }
   }, [userId]);
 
   return (
     <>
-    
       <div className={css.container}>
         {isLoading ? (
           <div className={css.loaderWrapper}>
